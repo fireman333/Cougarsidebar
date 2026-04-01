@@ -82,27 +82,42 @@
     if (!location.hostname.includes('cougarbot')) return meta;
 
     try {
-      // 1. Find 題號 — look for the nearest "題號: N" near the selection
       const sel = window.getSelection();
+      const selText = sel.toString() || '';
+
+      // 1. Find 題號 — first try from selected text, then DOM
+      const selMatch = selText.match(/題號[:：\s]*(\d+)/);
+      if (selMatch) {
+        meta.questionNum = selMatch[1];
+      }
+
       if (sel.rangeCount) {
         let node = sel.anchorNode;
         if (node && node.nodeType === 3) node = node.parentElement;
 
-        // Walk up to find a container that has "題號"
+        // If not found in selected text, walk up DOM to find it
         let card = node;
-        for (let i = 0; i < 15 && card && card !== document.body; i++) {
-          const t = card.textContent || '';
-          if (/題號[:：\s]*\d+/.test(t)) {
-            // Found a container with 題號. Now find the exact element.
-            const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
-            let textNode;
-            while ((textNode = walker.nextNode())) {
-              const m = textNode.textContent.match(/題號[:：\s]*(\d+)/);
-              if (m) { meta.questionNum = m[1]; break; }
+        if (!meta.questionNum) {
+          for (let i = 0; i < 15 && card && card !== document.body; i++) {
+            const t = card.textContent || '';
+            if (/題號[:：\s]*\d+/.test(t)) {
+              const walker = document.createTreeWalker(card, NodeFilter.SHOW_TEXT);
+              let textNode;
+              while ((textNode = walker.nextNode())) {
+                const m = textNode.textContent.match(/題號[:：\s]*(\d+)/);
+                if (m) { meta.questionNum = m[1]; break; }
+              }
+              break;
             }
-            break;
+            card = card.parentElement;
           }
-          card = card.parentElement;
+        } else {
+          // Still walk up to find the card container for categories
+          for (let i = 0; i < 15 && card && card !== document.body; i++) {
+            const t = card.textContent || '';
+            if (/題號/.test(t) || card.querySelectorAll('[class*="tag"], [class*="badge"]').length > 0) break;
+            card = card.parentElement;
+          }
         }
 
         // 2. Find categories — look for tag/badge elements near the question
