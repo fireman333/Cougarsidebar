@@ -225,6 +225,7 @@
       position:fixed; top:0; right:0; width:${SIDEBAR_DEFAULT_WIDTH}px; height:100vh;
       z-index:2147483647; display:none; flex-direction:row;
       box-shadow:-2px 0 12px rgba(0,0,0,.35); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      overscroll-behavior:contain;
     `;
 
     const shadow = container.attachShadow({ mode: 'open' });
@@ -296,9 +297,13 @@
 
     aiIframe = document.createElement('iframe');
     aiIframe.id = 'psf-ai-iframe';
-    aiIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;';
+    aiIframe.style.cssText = 'width:100%;height:100%;border:none;display:block;overscroll-behavior:contain;';
     container.appendChild(aiIframe);
     document.body.appendChild(container);
+
+    // Prevent scroll events on sidebar from scrolling the main page
+    container.addEventListener('wheel', (e) => { e.stopPropagation(); }, true);
+    container.addEventListener('touchmove', (e) => { e.stopPropagation(); }, true);
 
     const sr = shadow;
     countEl = sr.getElementById('cnt');
