@@ -15,7 +15,9 @@
     "declarativeNetRequest",
     "declarativeNetRequestWithHostAccess",
     "downloads",
-    "clipboardWrite"
+    "clipboardWrite",
+    "scripting",
+    "webNavigation"
   ],
   "host_permissions": [
     "https://gemini.google.com/*",
