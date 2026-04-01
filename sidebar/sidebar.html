@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>解題心流</title>
+  <link rel="stylesheet" href="sidebar.css">
+</head>
+<body>
+  <div id="header">
+    <div id="tab-bar">
+      <button class="tab active" data-platform="gemini">Gemini</button>
+      <button class="tab" data-platform="chatgpt">ChatGPT</button>
+      <button class="tab" data-platform="claude">Claude</button>
+      <button class="tab" data-platform="google-ai">Google AI</button>
+    </div>
+    <button id="close-btn" title="關閉">✕</button>
+  </div>
+  <div id="gem-bar">
+    <span>🔗 Gem:</span>
+    <span id="gem-url-display">未設定</span>
+  </div>
+  <div id="ai-container">
+    <iframe id="ai-iframe"></iframe>
+    <div id="ai-loading">載入中...</div>
+  </div>
+  <div id="footer">
+    <div id="record-count">
+      <span id="count-number">0</span> 題已記錄
+    </div>
+    <div id="footer-actions">
+      <button id="record-btn" class="btn btn-secondary" title="手動記錄當前回答">✓ 記錄</button>
+      <button id="export-btn" class="btn btn-primary" title="匯出所有記錄">📥 匯出</button>
+    </div>
+  </div>
+  <script src="sidebar.js"></script>
+</body>
+</html>

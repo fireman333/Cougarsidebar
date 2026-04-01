@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <h1>解題心流 設定</h1>
+
+    <section>
+      <h2>Gem 設定</h2>
+      <label for="gem-url">Gem URL（Gemini 專用）</label>
+      <input type="url" id="gem-url" placeholder="https://gemini.google.com/app/gem/..." />
+      <p class="hint">輸入你常用的 Gem 網址，開啟 Gemini 時會自動導航到此 Gem</p>
+    </section>
+
+    <section>
+      <h2>Prompt 模板</h2>
+      <label for="prompt-template">送給 AI 的 prompt（用 {text} 代表選取的文字）</label>
+      <textarea id="prompt-template" rows="10"></textarea>
+      <button id="reset-template" class="btn-link">恢復預設模板</button>
+    </section>
+
+    <section>
+      <h2>快捷鍵</h2>
+      <p>目前快捷鍵：<kbd>Ctrl+Shift+Q</kbd>（Mac: <kbd>⌘+Shift+Q</kbd>）</p>
+      <p class="hint">如需自訂快捷鍵，請到 <a href="#" id="shortcuts-link">chrome://extensions/shortcuts</a></p>
+    </section>
+
+    <div class="actions">
+      <button id="save-btn" class="btn-primary">儲存設定</button>
+      <span id="save-status"></span>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
