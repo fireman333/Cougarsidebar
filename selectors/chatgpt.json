@@ -1,0 +1,26 @@
+{
+  "platform": "chatgpt",
+  "inputSelectors": [
+    "#prompt-textarea",
+    "div#prompt-textarea[contenteditable='true']",
+    "textarea[data-id='root']",
+    "div[contenteditable='true'][data-id]"
+  ],
+  "submitSelectors": [
+    "button#composer-submit-button",
+    "button[data-testid='send-button']",
+    "button[aria-label*='Send']",
+    "form button[type='submit']"
+  ],
+  "responseSelectors": [
+    "article[data-testid^='conversation-turn-'] div.markdown",
+    "[data-message-author-role='assistant'] .markdown",
+    "div[data-testid='conversation-turns'] div.markdown"
+  ],
+  "stopButtonSelectors": [
+    "button[data-testid='stop-button']",
+    "button[aria-label='Stop generating']"
+  ],
+  "streamingClass": "result-streaming",
+  "inputMethod": "contenteditable"
+}

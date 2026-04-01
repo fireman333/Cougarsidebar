@@ -1,0 +1,26 @@
+{
+  "platform": "gemini",
+  "inputSelectors": [
+    ".ql-editor[contenteditable='true']",
+    "rich-textarea [contenteditable='true']",
+    "div[contenteditable='true'][aria-label*='prompt']",
+    "div[contenteditable='true'][role='textbox']"
+  ],
+  "submitSelectors": [
+    "button[aria-label*='Send']",
+    "button.send-button",
+    "button[mattooltip*='Send']",
+    "button[data-test-id='send-button']"
+  ],
+  "responseSelectors": [
+    "model-response message-content .markdown",
+    "model-response .markdown",
+    ".model-response-text .markdown",
+    ".conversation-container model-response"
+  ],
+  "stopButtonSelectors": [
+    "button[aria-label='Stop generating']",
+    "button.stop-button"
+  ],
+  "inputMethod": "contenteditable"
+}
